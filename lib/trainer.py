@@ -126,7 +126,7 @@ class Trainer(nn.Module):
         self.step += 1
         self.writer.add_scalar('train loss', loss.item(), self.step)
         
-        return {'loss': loss.detach().numpy()}
+        return {'loss': loss.cpu().detach().numpy()}
 
     def evaluate_classification_error(self, X_test, y_test, device, batch_size=4096):
         X_test = torch.as_tensor(X_test, device=device)
